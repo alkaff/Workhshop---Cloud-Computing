@@ -1,5 +1,9 @@
+var host = 'http://universe.cloudfoundry.com';
+//var host = 'http://localhost';
+
+
 $(document).ready(function(){
-		var socket = io.connect('http://localhost');
+		var socket = io.connect(host);
 			  $(".bLogin").click(function(){
 			  $("#login").hide("slow");
 			  $("#table_container").show("slow");
@@ -87,7 +91,7 @@ function editItem(own) {
 function removeItem(own) {
 	var dlt=confirm("Hapus Data : "+$('#nama'+ own).text());
 	if (dlt==true){
-		var socket = io.connect('http://localhost'); //alert( $('#id'+own).text());
+		var socket = io.connect(host); //alert( $('#id'+own).text());
 		socket.emit('remove', { nama : $('#nama'+own).text() });
 	    socket.on('removeData', function (data) {
 	    	//if (data == "success"){
@@ -98,3 +102,4 @@ function removeItem(own) {
 	   	});
 	}
 }
+	

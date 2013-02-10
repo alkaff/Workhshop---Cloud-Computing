@@ -2,6 +2,10 @@
 /**
  * Module dependencies.
  */
+
+var port = (process.env.VMC_APP_PORT || 80);
+var host = (process.env.VCAP_APP_HOST || 'localhost');
+
 var express = require('express')
   , app = express()
   , routes = require('./routes')
@@ -9,12 +13,13 @@ var express = require('express')
   , server = require('http').createServer(app)
   , io = require('socket.io').listen(server);
 
-var port = (process.env.VMC_APP_PORT || 3000);
-var host = (process.env.VCAP_APP_HOST || 'localhost');
-var http = require('http');
 
-server.listen(3000, function(){
-  console.log("Express server listening on port " + 3000);
+var port = (process.env.VMC_APP_PORT || 80);
+var host = (process.env.VCAP_APP_HOST || 'localhost');
+//var http = require('http');
+
+server.listen(80, function(){
+  console.log("Express server listening on port " + 80);
 });
 
 app.configure(function(){
@@ -49,51 +54,3 @@ io.sockets.on('connection', function (socket) {
 
 });
 
-
-if(process.env.VCAP_SERVICES){
-  var env = JSON.parse(process.env.VCAP_SERVICES);
-  var mongo = env['mongodb-2.0'][0]['credentials'];
-}
-else{
-  var mongo = {
-    "hostname":"localhost",
-    "port":27017,
-    "username":"",
-    "password":"",
-    "name":"",
-    "db":"db"
-  }
-}
-
-var generate_mongo_url = function(obj){
-  obj.hostname = (obj.hostname || 'localhost');
-  obj.port = (obj.port || 27017);
-  obj.db = (obj.db || 'test');
-
-  if(obj.username && obj.password){
-    return "mongodb://" + obj.username + ":" + obj.password + "@" + obj.hostname + ":" + obj.port + "/" + obj.db;
-  }
-  else{
-    return "mongodb://" + obj.hostname + ":" + obj.port + "/" + obj.db;
-  }
-}
-
-var mongourl = generate_mongo_url(mongo);
-
-var record_visit = function(req, res){
-  /* Connect to the DB and auth */
-  require('mongodb').connect(mongourl, function(err, conn){
-    conn.collection('employees', function(err, coll){
-      /* Simple object to insert: ip address and date */
-      object_to_insert = { 'ip': req.connection.remoteAddress, 'ts': new Date() };
-
-      /* Insert the object then print in response */
-      /* Note the _id has been created */
-      coll.insert( object_to_insert, {safe:true}, function(err){
-        res.writeHead(200, {'Content-Type': 'text/plain'});
-        res.write(JSON.stringify(object_to_insert));
-        res.end('\n');
-      });
-    });
-  });
-}
