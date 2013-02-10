@@ -29,9 +29,11 @@ $(document).ready(function(){
 				$("#table_container").show("slow");
 				$("#form_container").hide("slow");
 			 });
+			 
+			 
 			 $("#save").click(function(){
 			  if($(this).val()=="Perbarui"){//updateData
-				  socket.emit('update', { oldnama : $('#nama'+ $(this).attr("x")).text(), nama : $('#element_2').val(), tgl : $('#element_5_1').val(), bln : $('#element_5_2').val(), thn : $('#element_5_3').val(), almt : $('#element_3').val(), jur : $('#element_6').val()});
+				  socket.emit('update', { oldnama : $('#nama'+ $('#selectorCol').val()).text(), nama : $('#element_2').val(), tgl : $('#element_5_1').val(), bln : $('#element_5_2').val(), thn : $('#element_5_3').val(), almt : $('#element_3').val(), jur : $('#element_6').val()});
 				  socket.on('updateData', function (data) {
 					  $("#nama"+$('#selectorCol').val()).text($("#element_2").val());//Nama
 					  $("#tgl"+$('#selectorCol').val()).text($("#element_5_1").val());//Tgl
@@ -48,18 +50,19 @@ $(document).ready(function(){
 			 $(".bDel").click(function(){
 			  removeItem($(this).attr("id"));
 			  });
-			 
 			 $(".bEdit").click(function(){
 			  editItem($(this).attr("id"));
-			  $("#save").val("Perbarui");
-			  $('#selectorCol').val($(this).attr("id"));
+			  
+			  /*$('#selectorCol').val($(this).attr("id"));
 			  $("#element_2").val($("#nama"+$(this).attr("id")).text());//Nama
 			  $("#element_5_1").val($("#tgl"+$(this).attr("id")).text());//Tgl
 			  $("#element_5_2").val($("#bln"+$(this).attr("id")).text());//Bulan Lahir
 			  $("#element_5_3").val($("#thn"+$(this).attr("id")).text());//Tahun Lahir
 			  $("#element_3").val($("#almt"+$(this).attr("id")).text());//Alamat
-			  $("#element_6").val($("#jur"+$(this).attr("id")).text());//Jurusan
+			  $("#element_6").val($("#jur"+$(this).attr("id")).text());//Jurusan*/
+			  
 			 });
+			 
 			 $("#cancel").click(function(){
 			  $("#table_container").show("slow");
 			  $("#form_container").hide("slow");
@@ -69,7 +72,8 @@ $(document).ready(function(){
 });
 
 function editItem(own) {
-	  alert(own);
+	  $("#save").val("Perbarui");
+	  $('#selectorCol').val(own);
 	  $("#element_2").val($("#nama"+own).text());//Nama
 	  $("#element_5_1").val($("#tgl"+own).text());//Tgl
 	  $("#element_5_2").val($("#bln"+own).text());//Bulan Lahir

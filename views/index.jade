@@ -40,7 +40,7 @@ body(id="main_body")
           p Berikut ini adalah data mahasiswa
         ul
           li
-            table#customers(jumbar= #{employees.count})
+            table#customers(jumbar= "#{employees.length}")
                 tr
                   th Nama
                   th Tanggal Lahir
