@@ -1,0 +1,134 @@
+!!! transitional
+html
+head
+    title Manajemen Data Mahasiswa
+    link(rel='stylesheet', type='text/css', href='stylesheets/view.css', media='all')
+    script(type='text/javascript', src='javascripts/view.js')
+    script(type='text/javascript', src='javascripts/calendar.js')
+    script(type='text/javascript', src='javascripts/jquery.js')
+    script(type='text/javascript', src='javascripts/socket.io.js')
+    script(type='text/javascript', src='javascripts/action.js')
+      
+body(id="main_body")
+    img#top(src='images/top.png', alt='')
+    #login
+      h1
+        a 
+      div
+       form#form_569466.appnitro(method='', action='')
+        .login_desc
+          h2 Aplikasi Manajemen Data Mahasiswa
+          p Selamat datang di Aplikasi Manajemen Data Mahasiswa, silahkan lakukan login untuk melanjutkan
+        ul
+          li
+            label.description ID Anda
+            div
+              input text.small(type='text', maxlength='255', value='')
+            label.description Password
+            div
+              input text.small(type='text', maxlength='255', value='')
+          li.buttons
+             input.bLogin.button(type='button', name='login', value='Masuk')
+
+    #table_container.hidden
+      h1
+        a Penginputan Data Mahasiswa
+      div
+      form#form_569466.appnitro(method='', action='')
+        .table_description
+          h2 Data Mahasiswa
+          p Berikut ini adalah data mahasiswa
+        ul
+          li
+            table#customers(jumbar= #{employees.count})
+                tr
+                  th Nama
+                  th Tanggal Lahir
+                  th Alamat
+                  //th Jenis Kelamin
+                  th Jurusan
+                  th 
+                - var i=0
+                each emp in employees
+                 tr(id="row"+i)
+                   td(id='nama'+i) #{emp.nama}
+                   td
+                    table.inside
+                     tr
+                      td(id='tgl'+i) #{emp.tgl}  
+                      td(id='bln'+i) #{emp.bln} 
+                      td(id='thn'+i) #{emp.thn}
+                   td(id='almt'+i) #{emp.almt}
+                   td(id='jur'+i) #{emp.jur}
+                   td 
+                    input.bEdit.button(type='button', value='Ubah', id=i)
+                    input.bDel.button(type='button', value='Hapus', id=i)
+                    - i=i+1
+          li.buttons
+             input#add.bAdd.button(type='button', name='reset', value='Tambah Data')
+    #form_container.hidden
+      h1
+        a Penginputan Data Mahasiswa
+      div
+       form#form_569466.appnitro(method='', action='')
+        .form_description
+          h2 Penginputan Data Mahasiswa
+          p Silahkan Inputkan Data Anda di bawah : 
+        ul#formPost
+          li#li_2
+            label.description(for='element_2') Nama 
+            div
+              input#element_2.element.text.medium(name='element_2', type='text', maxlength='255', value='')
+          li#li_5
+            label.description(for='element_5') Tanggal Lahir 
+            div
+            span
+              input#element_5_1.element.text(name='element_5_1', size='2', maxlength='2', value='', type='text')
+              | /
+              label(for='element_5_1') Tanggal
+            span
+              input#element_5_2.element.text(name='element_5_2', size='2', maxlength='2', value='', type='text')
+              | /
+              label(for='element_5_2') Bulan
+            span
+              input#element_5_3.element.text(name='element_5_3', size='4', maxlength='4', value='', type='text')
+              label(for='element_5_3') Tahun
+            span#calendar_5
+              img#cal_img_5.datepicker(src='images/calendar.gif', alt='Pick a date.')
+            script(type='text/javascript')
+              Calendar.setup({
+              inputField	 : "element_5_3",
+              baseField    : "element_5",
+              displayArea  : "calendar_5",
+              button		 : "cal_img_5",
+              ifFormat	 : "%B %e, %Y",
+              onSelect	 : selectEuropeDate
+              });
+          li#li_3
+            label.description(for='element_3') Alamat 
+            div
+              input#element_3.element.text.medium(name='element_3', type='text', maxlength='255', value='')
+          //li#li_4
+            label.description(for='element_4') Jenis Kelamin 
+            span
+              input#element_4_1.element.radio(name='element_4', type='radio', value='1' )
+              label.choice(for='element_4_1') Laki-laki
+              input#element_4_2.element.radio(name='element_4', type='radio', value='2' )
+              label.choice(for='element_4_2') Perempuan//
+          li#li_6
+            label.description(for='element_6') Jurusan yang dipilih 
+            div
+              select#element_6.element.select.medium(name='element_6')
+                option(value='', selected='selected')
+                option(value='Teknik Informatika') Teknik Informatika 
+                option(value='Sistem Informasi') Sistem Informasi 
+                option(value='Manajemen Informatika') Manajemen Informatika 
+          li.buttons
+            input#save.button(type='button', name='save', value='Simpan', x='')
+            input#cancel.button(type='button', name='cancel', value='Batal')
+            input#selectorCol(type='hidden', name='form_id', value='')
+    #login
+      a 
+      div Created by 
+         a(href='http://www.facebook.com/KaitoKurozaki') Dzaky Alkaff
+         img#bottom(src='images/top.png', alt='')

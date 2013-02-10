@@ -1,0 +1,85 @@
+!!! transitional
+html
+head
+    title Penginputan Data Mahasiswa
+    link(rel='stylesheet', type='text/css', href='stylesheets/view.css', media='all')
+    script(type='text/javascript', src='javascripts/view.js')
+    script(type='text/javascript', src='javascripts/calendar.js')
+    script(type='text/javascript', src='javascripts/jquery.js')
+    //fungsi1
+    script
+      $(document).ready(function(){
+      $("#saveForm.button").click(function(){
+      $(".form_description").fadeOut();
+      $(".table_description").fadeIn();
+      });
+      });
+body(id="main_body")
+    img#top(src='images/top.png', alt='')
+    #form_container
+      h1
+        a Penginputan Data Mahasiswa
+      div
+      form#form_569466.appnitro(method='post', action='layout.jade')
+        .form_description
+          h2 Penginputan Data Mahasiswa
+          p Silahkan Inputkan Data Anda di bawah : 
+        ul
+          li#li_2
+            label.description(for='element_2') Nama 
+            div
+              input#element_2.element.text.medium(name='element_2', type='text', maxlength='255', value='')
+          li#li_5
+            label.description(for='element_5') Tanggal Lahir 
+            div
+            span
+              input#element_5_1.element.text(name='element_5_1', size='2', maxlength='2', value='', type='text')
+              | /
+              label(for='element_5_1') Tanggal
+            span
+              input#element_5_2.element.text(name='element_5_2', size='2', maxlength='2', value='', type='text')
+              | /
+              label(for='element_5_2') Bulan
+            span
+              input#element_5_3.element.text(name='element_5_3', size='4', maxlength='4', value='', type='text')
+              label(for='element_5_3') Tahun
+            span#calendar_5
+              img#cal_img_5.datepicker(src='images/calendar.gif', alt='Pick a date.')
+            script(type='text/javascript')
+              Calendar.setup({
+              inputField	 : "element_5_3",
+              baseField    : "element_5",
+              displayArea  : "calendar_5",
+              button		 : "cal_img_5",
+              ifFormat	 : "%B %e, %Y",
+              onSelect	 : selectEuropeDate
+              });
+          li#li_3
+            label.description(for='element_3') Alamat 
+            div
+              input#element_3.element.text.medium(name='element_3', type='text', maxlength='255', value='')
+          li#li_4
+            label.description(for='element_4') Jenis Kelamin 
+            span
+              input#element_4_1.element.radio(name='element_4', type='radio', value='1')
+              label.choice(for='element_4_1') Laki-laki
+              input#element_4_2.element.radio(name='element_4', type='radio', value='2')
+              label.choice(for='element_4_2') Perempuan
+          li#li_6
+            label.description(for='element_6') Jurusan yang dipilih 
+            div
+              select#element_6.element.select.medium(name='element_6')
+                option(value='', selected='selected')
+                option(value='1') Teknik Informatika (S1)
+                option(value='2') Sistem Informasi (S1)
+                option(value='3') Manajemen Informatika (D3)
+          li.buttons
+            input(type='hidden', name='form_id', value='569466')
+            input#reset.button(type='reset', name='reset', value='Kosongkan')
+            input#saveForm.button(type='button', name='submit', value='Simpan')
+      
+      
+      #footer
+        | Created by 
+        a(href='http://www.facebook.com/KaitoKurozaki') Dzaky Alkaff
+    img#bottom(src='images/bottom.png', alt='')

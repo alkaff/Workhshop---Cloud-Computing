@@ -1,0 +1,64 @@
+<html>
+
+<head>
+<title>Latihan</title>
+<script type="text/javascript" src="script/jquery-1.7.2.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#Simpan").click(function(){
+    $("#isidata").fadeout();
+  });
+});
+</script>
+</head>
+
+<body>
+<div id="isidata">
+Isikan Data Pribadi Anda <br>
+  <form action="" method="post">
+     <table>
+     <tr>
+          <td>Nama : </td>
+          <td><input type="text" name="nama" size="30"></td>
+     </tr>
+     <tr>
+          <td>alamat : </td>
+          <td>
+          <textarea cols="30" rows="5" name="alamat">
+          </textarea></td>
+     </tr>
+     <tr>
+          <td>Hobi :</td>
+          <td>
+          <input type="checkbox" name="hobi" value="makan">makan<br>
+          <input type="checkbox" name="hobi" value="tidur">tidur<br>
+          <input type="checkbox" name="hobi" value="baca">baca<br>
+          <input type="checkbox" name="hobi" value="nonton">nonton
+          </td>
+     </tr>
+     <br/>
+     <tr>
+          <td>Umur :</td>
+          <td>
+          <select>
+               <option>0-10 tahun</option>
+               <option>11-20 tahun</option>
+               <option>21-30 tahun</option>
+               <option>>40 tahun</option>
+          </select>
+          <br/>
+          </td>
+     </tr>
+          <td>Foto :</td>
+          <td><input type="file" name="foto"></td>
+     </tr>
+     <tr>
+          <td colspan="2">
+          <button id="Simpan">Simpan Saya</button>
+          <input type="reset" value="Batal">
+          </td>
+     </tr>
+  </form>
+</div>
+</body>
+</html>

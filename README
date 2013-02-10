@@ -1,0 +1,25 @@
+Aplikasi Manajemen Data Mahasiswa
+---------------------------------
+
+Deskripsi
+------------
+Aplikasi ini difungsikan sebagai manajemen data mahasiswa dengan fungsi 
+1. Melihat data Mahasiswa
+2. Menginputkan data Mahasiswa
+3. Menghapus data Mahasiswa
+4. Mengubah atau Meng-updata data Mahasiswa
+
+Aplikasi ini belum sempurna baik dilihat dari sudut pandang Interface dan Sistem. 
+Selain itu juga masih terdapat beberapa BUG 
+1. Pada saat Menghapus data(khususnya pada data Nama=null) dengan mengklik hapus data terlihat terhapus, namun apabila dilakukan refresh pada browser maka data pada tabel akan kembali
+2. Fungsi Update belum berjalan dengan benar
+yang terlihat pada saat diklik Update sewaktu selesai mengubah data pada form pengisian
+
+Namun dari sisi developer masih berusaha untuk memperbaiki 
+hingga aplikasi ini dapat di akses dari internet
+
+ToDoList
+------------
+1. Menyelesaikan BUG untuk memperbaiki Sistem
+2. Push di CloudFoundry untuk menyelesaikan untuk menyelesaikan tugas Workshop Cloud Computing yang dibimbing oleh Bpk. Bambang Purnomosidi D. P.
+3. Menambahkan Halaman Home untuk memperluwes aplikasi
